@@ -4,11 +4,6 @@
 
 ## 🌐 **[🚀 LIVE DEMO](https://smart-train-finder-liard.vercel.app/)**
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-smart--train--finder-brightgreen?style=flat&logo=vercel)](https://smart-train-finder-liard.vercel.app/)
-[![Powered by Vercel](https://img.shields.io/badge/Powered%20by-Vercel-black?style=flat&logo=vercel)](https://vercel.com)
-[![Tests](https://github.com/abhishekreddyallu/smart-train-finder/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/abhishekreddyallu/smart-train-finder/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 ## 🌟 Overview
 
 Smart Train Finder is a modern, responsive web application that helps users discover the best train connections between Hamburg, Germany and Amsterdam, Netherlands. Whether you're planning a business trip or a weekend getaway, our app provides comprehensive journey options with intelligent filtering and detailed information to help you make the best travel decisions.
