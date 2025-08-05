@@ -2,14 +2,27 @@
 
 **Your gateway to seamless European rail travel between Hamburg and Amsterdam**
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/smart-train-finder)
+## 🌐 **[🚀 LIVE DEMO](https://smart-train-finder-liard.vercel.app/)**
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/abhishekreddyallu/smart-train-finder)
 [![Powered by Vercel](https://img.shields.io/badge/Powered%20by-Vercel-black?style=flat&logo=vercel)](https://vercel.com)
-[![Tests](https://github.com/YOUR_USERNAME/smart-train-finder/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/YOUR_USERNAME/smart-train-finder/actions)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-smart--train--finder-brightgreen?style=flat&logo=vercel)](https://smart-train-finder-liard.vercel.app/)
+[![Tests](https://github.com/abhishekreddyallu/smart-train-finder/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/abhishekreddyallu/smart-train-finder/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🌟 Overview
 
 Smart Train Finder is a modern, responsive web application that helps users discover the best train connections between Hamburg, Germany and Amsterdam, Netherlands. Whether you're planning a business trip or a weekend getaway, our app provides comprehensive journey options with intelligent filtering and detailed information to help you make the best travel decisions.
+
+### 🎮 **Try It Now!**
+**Live Demo**: [https://smart-train-finder-liard.vercel.app/](https://smart-train-finder-liard.vercel.app/)
+
+✨ **Features you can test:**
+- 🔍 Search one-way and roundtrip connections
+- 📊 Filter by fastest, cheapest, or least changes
+- 📱 Responsive design on any device
+- 🌙 Smart overnight stays validation
+- ⚡ Real-time results with caching
 
 ## ✨ Key Features
 
@@ -80,13 +93,18 @@ npm start
 
 The app will open at `http://localhost:3000` 🎉
 
-### 🚀 One-Click Vercel Deployment
+### 🚀 Live Deployment
 
-**Instant deployment to Vercel:**
+**Already deployed and running:**
+- **Live URL**: [https://smart-train-finder-liard.vercel.app/](https://smart-train-finder-liard.vercel.app/)
+- **Auto-deploys** on every Git push
+- **Global CDN** for fast worldwide access
+- **Built-in analytics** and performance monitoring
+
+**Deploy your own copy:**
 - Click the **"Deploy with Vercel"** button above
 - Connect your GitHub repository
-- Vercel will automatically build and deploy your app
-- Get a live URL in under 2 minutes!
+- Get your own live URL in under 2 minutes!
 
 **Manual Vercel deployment:**
 ```bash
