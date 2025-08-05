@@ -9,7 +9,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
     const [tripType, setTripType] = useState<'one-way' | 'roundtrip'>('one-way');
     const [departureDate, setDepartureDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
-    const [overnightStays, setOvernightStays] = useState(1);
+    const [overnightStays, setOvernightStays] = useState<number | string>(1);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,7 +18,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
                 tripType,
                 departureDate,
                 returnDate: tripType === 'roundtrip' ? returnDate : undefined,
-                overnightStays: tripType === 'roundtrip' ? overnightStays : undefined
+                overnightStays: tripType === 'roundtrip' ? (typeof overnightStays === 'number' ? overnightStays : parseInt(overnightStays) || 1) : undefined
             });
         }
     };
@@ -149,9 +149,25 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
                         <input
                             type="number"
                             value={overnightStays}
-                            onChange={(e) => setOvernightStays(parseInt(e.target.value) || 1)}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                if (value === '') {
+                                    setOvernightStays('');
+                                } else {
+                                    const numValue = parseInt(value);
+                                    if (!isNaN(numValue) && numValue >= 1 && numValue <= 30) {
+                                        setOvernightStays(numValue);
+                                    }
+                                }
+                            }}
+                            onBlur={(e) => {
+                                if (e.target.value === '' || parseInt(e.target.value) < 1) {
+                                    setOvernightStays(1);
+                                }
+                            }}
                             min="1"
                             max="30"
+                            placeholder="1"
                             style={inputStyle}
                         />
                     </div>
