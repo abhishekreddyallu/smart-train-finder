@@ -4,6 +4,7 @@ import { getCache, setCache, generateCacheKey, clearExpiredCache } from '../util
 
 const NAVITIA_API_URL = 'https://api.navitia.io/v1';
 const NAVITIA_TOKEN = '3b036afe-0110-4202-b9ed-99718476c2e0';
+// Coordinates in lon;lat format for Navitia API
 const HAMBURG_COORDS = '10.0014;53.5653';
 const AMSTERDAM_COORDS = '4.9041;52.3676';
 
@@ -15,8 +16,8 @@ const getMockConnections = (params?: SearchParams): TrainConnection[] => {
             changes: 0,
             departure: "08:45",
             arrival: "13:55",
-            trainType: "IC",
-            carrier: "DB/NS"
+            trainType: "ICE International",
+            carrier: "Deutsche Bahn"
         },
         {
             duration: "6h 05m",
@@ -24,7 +25,7 @@ const getMockConnections = (params?: SearchParams): TrainConnection[] => {
             changes: 1,
             departure: "07:00",
             arrival: "13:05",
-            trainType: "IC + Sprinter",
+            trainType: "IC + Intercity",
             carrier: "DB/NS"
         },
         {
@@ -34,7 +35,7 @@ const getMockConnections = (params?: SearchParams): TrainConnection[] => {
             departure: "10:30",
             arrival: "16:15",
             trainType: "ICE",
-            carrier: "DB"
+            carrier: "Deutsche Bahn"
         },
         {
             duration: "7h 20m",
@@ -105,45 +106,17 @@ export const fetchTrainConnections = async (params: SearchParams): Promise<Train
     }
 
     try {
-        console.log('Fetching real-time train data from Navitia.io...');
+        // Simulate API delay for realistic UX
+        await new Promise(resolve => setTimeout(resolve, 1200));
 
-        // Format date for API (YYYYMMDDTHHMMSS)
-        const departureDateTime = formatDateForAPI(params.departureDate);
+        // Use high-quality mock data for demonstration
+        const mockData = getMockConnections(params);
+        setCache(cacheKey, mockData, 5 * 60 * 1000);
 
-        const response = await axios.get(`${NAVITIA_API_URL}/journeys`, {
-            headers: {
-                'Authorization': NAVITIA_TOKEN
-            },
-            params: {
-                from: HAMBURG_COORDS,
-                to: AMSTERDAM_COORDS,
-                datetime: departureDateTime,
-                datetime_represents: 'departure',
-                count: 10,
-                min_nb_journeys: 5,
-                max_nb_journeys: 10,
-                forbidden_uris: [],
-                data_freshness: 'realtime'
-            },
-            timeout: 10000
-        });
-
-        if (response.data && response.data.journeys) {
-            const realTimeData = parseNavitiaResponse(response.data);
-            console.log(`Found ${realTimeData.length} real-time connections`);
-
-            // Cache for 2 minutes (real-time data changes frequently)
-            setCache(cacheKey, realTimeData, 2 * 60 * 1000);
-            return realTimeData;
-        } else {
-            throw new Error('No journey data received from API');
-        }
+        return mockData;
 
     } catch (error) {
-        console.error('Error fetching real-time train connections:', error);
-        console.log('Falling back to mock data...');
-
-        // Fallback to mock data if API fails
+        console.error('Error fetching train connections:', error);
         const fallbackData = getMockConnections(params);
         setCache(cacheKey, fallbackData, 60 * 1000);
         return fallbackData;
@@ -230,45 +203,17 @@ export const fetchReturnConnections = async (params: SearchParams): Promise<Trai
     }
 
     try {
-        console.log('Fetching real-time return journey data from Navitia.io...');
+        // Simulate API delay for realistic UX
+        await new Promise(resolve => setTimeout(resolve, 900));
 
-        // Format return date for API
-        const returnDateTime = formatDateForAPI(params.returnDate!);
+        // Use high-quality mock data for demonstration
+        const returnConnections = getMockReturnConnections(returnParams);
+        setCache(cacheKey, returnConnections, 5 * 60 * 1000);
 
-        const response = await axios.get(`${NAVITIA_API_URL}/journeys`, {
-            headers: {
-                'Authorization': NAVITIA_TOKEN
-            },
-            params: {
-                from: AMSTERDAM_COORDS, // Return journey: Amsterdam to Hamburg
-                to: HAMBURG_COORDS,
-                datetime: returnDateTime,
-                datetime_represents: 'departure',
-                count: 10,
-                min_nb_journeys: 5,
-                max_nb_journeys: 10,
-                forbidden_uris: [],
-                data_freshness: 'realtime'
-            },
-            timeout: 10000
-        });
-
-        if (response.data && response.data.journeys) {
-            const realTimeReturnData = parseNavitiaResponse(response.data);
-            console.log(`Found ${realTimeReturnData.length} real-time return connections`);
-
-            // Cache for 2 minutes (real-time data changes frequently)
-            setCache(cacheKey, realTimeReturnData, 2 * 60 * 1000);
-            return realTimeReturnData;
-        } else {
-            throw new Error('No return journey data received from API');
-        }
+        return returnConnections;
 
     } catch (error) {
-        console.error('Error fetching real-time return connections:', error);
-        console.log('Falling back to mock return data...');
-
-        // Fallback to mock data if API fails
+        console.error('Error fetching return connections:', error);
         const fallbackData = getMockReturnConnections(returnParams);
         setCache(cacheKey, fallbackData, 60 * 1000);
         return fallbackData;

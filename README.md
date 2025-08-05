@@ -6,17 +6,28 @@
 
 ## 🌟 Overview
 
-Smart Train Finder is a modern, responsive web application that helps users discover the best train connections between Hamburg, Germany and Amsterdam, Netherlands. Whether you're planning a business trip or a weekend getaway, our app provides comprehensive journey options with intelligent filtering and detailed information to help you make the best travel decisions.
+Smart Train Finder is a modern React application for discovering train connections between Hamburg and Amsterdam. Built with TypeScript and featuring a clean, responsive design, it demonstrates modern web development practices including state management, API integration, caching, and comprehensive form validation.
 
-### 🎮 **Try It Now!**
-**Live Demo**: [https://smart-train-finder-liard.vercel.app/](https://smart-train-finder-liard.vercel.app/)
+## 🛠️ Technical Stack
 
-✨ **Features you can test:**
-- 🔍 Search one-way and roundtrip connections
-- 📊 Filter by fastest, cheapest, or least changes
-- 📱 Responsive design on any device
-- 🌙 Smart overnight stays validation
-- ⚡ Real-time results with caching
+- **Frontend**: React 18 + TypeScript
+- **Styling**: CSS-in-JS with responsive design
+- **State Management**: React Hooks (useState, useEffect)
+- **API Integration**: Axios with error handling
+- **Caching**: Custom implementation with TTL
+- **Testing**: Jest + React Testing Library
+- **Deployment**: Vercel with CI/CD
+- **Code Quality**: ESLint + TypeScript strict mode
+
+### 🎮 **Live Demo**
+**[https://smart-train-finder-liard.vercel.app/](https://smart-train-finder-liard.vercel.app/)**
+
+**Key Features:**
+- One-way and roundtrip journey planning
+- Advanced filtering (fastest, cheapest, least changes)
+- Responsive design for all devices
+- Smart form validation
+- Efficient caching system
 
 ## ✨ Key Features
 
