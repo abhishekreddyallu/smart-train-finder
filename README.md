@@ -4,9 +4,8 @@
 
 ## 🌐 **[🚀 LIVE DEMO](https://smart-train-finder-liard.vercel.app/)**
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/abhishekreddyallu/smart-train-finder)
-[![Powered by Vercel](https://img.shields.io/badge/Powered%20by-Vercel-black?style=flat&logo=vercel)](https://vercel.com)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-smart--train--finder-brightgreen?style=flat&logo=vercel)](https://smart-train-finder-liard.vercel.app/)
+[![Powered by Vercel](https://img.shields.io/badge/Powered%20by-Vercel-black?style=flat&logo=vercel)](https://vercel.com)
 [![Tests](https://github.com/abhishekreddyallu/smart-train-finder/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/abhishekreddyallu/smart-train-finder/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -102,6 +101,9 @@ The app will open at `http://localhost:3000` 🎉
 - **Built-in analytics** and performance monitoring
 
 **Deploy your own copy:**
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/abhishekreddyallu/smart-train-finder)
+
 - Click the **"Deploy with Vercel"** button above
 - Connect your GitHub repository
 - Get your own live URL in under 2 minutes!
