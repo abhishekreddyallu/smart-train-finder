@@ -289,35 +289,6 @@ const Home: React.FC = () => {
                     )}
                 </>
             )}
-
-            <footer style={{
-                marginTop: '50px',
-                paddingTop: '30px',
-                borderTop: '1px solid #dee2e6',
-                textAlign: 'center',
-                color: '#6c757d',
-                fontSize: '14px'
-            }}>
-                <div style={{ marginBottom: '15px' }}>
-                    <strong>🚄 Smart Train Finder</strong> - Your gateway to seamless European rail travel
-                </div>
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '20px',
-                    flexWrap: 'wrap',
-                    marginBottom: '15px'
-                }}>
-                    <span>🌍 Hamburg ⇄ Amsterdam</span>
-                    <span>📱 Mobile Friendly</span>
-                    <span>🔒 Secure Booking</span>
-                </div>
-                <div style={{ fontSize: '12px', color: '#adb5bd' }}>
-                    Built with ❤️ for travelers • Data powered by European rail networks
-                    <br />
-                    © 2025 Smart Train Finder. Prices and schedules subject to change.
-                </div>
-            </footer>
         </div>
     );
 };
