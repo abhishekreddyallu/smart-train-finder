@@ -167,17 +167,17 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## 🚂 API Integration
 
-### Supported APIs
-- **🌍 Navitia.io** - European public transport
-- **🇩🇪 Deutsche Bahn** - German railways
-- **🇳🇱 NS International** - Dutch railways
-- **🎫 Trainline** - Multi-operator platform
+### Architecture
+- **Professional API Service Layer** - Clean separation of concerns
+- **Async/Await Patterns** - Modern JavaScript best practices
+- **TypeScript Interfaces** - Type-safe data contracts
+- **Error Handling** - Comprehensive try/catch with fallbacks
 
 ### Current Implementation
-- **Mock Data** for demonstration
-- **Real API Ready** - Navitia.io integration prepared
-- **Intelligent Fallbacks** - Graceful error handling
-- **Rate Limiting** - Respects API constraints
+- **High-Quality Mock Data** - Realistic train connection data
+- **API Integration Ready** - Architecture prepared for real endpoints
+- **Intelligent Caching** - TTL-based performance optimization
+- **Graceful Error Handling** - Robust fallback mechanisms
 
 ## 🧪 Testing
 
