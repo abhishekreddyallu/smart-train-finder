@@ -23,11 +23,6 @@
     }
   ],
   "env": {
-    "REACT_APP_NAVITIA_TOKEN": "@navitia-token"
-  },
-  "build": {
-    "env": {
-      "REACT_APP_NAVITIA_TOKEN": "@navitia-token"
-    }
+    "NODE_OPTIONS": "--openssl-legacy-provider"
   }
 }
