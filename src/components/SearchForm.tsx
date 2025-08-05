@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchParams } from '../types';
 
 interface SearchFormProps {
@@ -10,6 +10,31 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
     const [departureDate, setDepartureDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
     const [overnightStays, setOvernightStays] = useState<number | string>(1);
+
+    // Calculate maximum overnight stays based on trip dates
+    const getMaxOvernightStays = (): number => {
+        if (tripType !== 'roundtrip' || !departureDate || !returnDate) return 30;
+
+        const depDate = new Date(departureDate);
+        const retDate = new Date(returnDate);
+        const diffTime = retDate.getTime() - depDate.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        // Maximum overnight stays should be trip duration minus 1 (can't stay longer than the trip)
+        return Math.max(1, diffDays - 1);
+    };
+
+    // Auto-adjust overnight stays when dates change
+    useEffect(() => {
+        if (tripType === 'roundtrip' && departureDate && returnDate) {
+            const maxStays = getMaxOvernightStays();
+            const currentStays = typeof overnightStays === 'number' ? overnightStays : parseInt(overnightStays) || 1;
+
+            if (currentStays > maxStays) {
+                setOvernightStays(maxStays);
+            }
+        }
+    }, [departureDate, returnDate, tripType, overnightStays]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -32,6 +57,19 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
             alert('Return date is required for round trips');
             return false;
         }
+
+        // Validate overnight stays for roundtrip
+        if (tripType === 'roundtrip' && departureDate && returnDate) {
+            const maxStays = getMaxOvernightStays();
+            const currentStays = typeof overnightStays === 'number' ? overnightStays : parseInt(overnightStays) || 1;
+
+            if (currentStays > maxStays) {
+                const tripDays = maxStays + 1;
+                alert(`Overnight stays cannot exceed ${maxStays} for a ${tripDays}-day trip. Please adjust your dates or overnight stays.`);
+                return false;
+            }
+        }
+
         return true;
     };
 
@@ -145,7 +183,14 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
                 {tripType === 'roundtrip' && (
                     <div style={fieldStyle}>
-                        <label style={labelStyle}>Overnight Stays:</label>
+                        <label style={labelStyle}>
+                            Overnight Stays:
+                            {departureDate && returnDate && (
+                                <span style={{ fontSize: '12px', color: '#666', fontWeight: 'normal' }}>
+                                    {' '}(max: {getMaxOvernightStays()})
+                                </span>
+                            )}
+                        </label>
                         <input
                             type="number"
                             value={overnightStays}
@@ -155,20 +200,26 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
                                     setOvernightStays('');
                                 } else {
                                     const numValue = parseInt(value);
-                                    if (!isNaN(numValue) && numValue >= 1 && numValue <= 30) {
+                                    const maxStays = getMaxOvernightStays();
+                                    if (!isNaN(numValue) && numValue >= 1 && numValue <= maxStays) {
                                         setOvernightStays(numValue);
                                     }
                                 }
                             }}
                             onBlur={(e) => {
-                                if (e.target.value === '' || parseInt(e.target.value) < 1) {
+                                const maxStays = getMaxOvernightStays();
+                                const value = parseInt(e.target.value);
+                                if (e.target.value === '' || value < 1) {
                                     setOvernightStays(1);
+                                } else if (value > maxStays) {
+                                    setOvernightStays(maxStays);
                                 }
                             }}
                             min="1"
-                            max="30"
+                            max={getMaxOvernightStays()}
                             placeholder="1"
                             style={inputStyle}
+                            title={`Maximum overnight stays for your trip duration: ${getMaxOvernightStays()}`}
                         />
                     </div>
                 )}
